@@ -28,6 +28,14 @@ class Camera:
         depth_image = np.asanyarray(frames.get_depth_frame().get_data())
         return cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.03), cv2.COLORMAP_JET)
     
+    def get_color_image(self, frames):
+        return np.asanyarray(frames.get_color_frame().get_data())
+    
+    def adjust_mask(self, image, upper_hsv, lower_hsv):
+        hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        return cv2.inRange(hsv_image, lower_hsv, upper_hsv)
+    
+    # def get_point_pos(self, point, )
 
     def stop_pipeline(self):
         self.pipeline
