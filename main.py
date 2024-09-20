@@ -20,6 +20,7 @@ while True:
     grey_color = 250
     bg_removed = cam.get_color_image(frames)
     depth_colormap = cam.get_depth_colormap(frames)
+    depth_image = cam.get_depth_image(frames)
     bg_removed_blurred = cv2.bilateralFilter(bg_removed, 5, 150, 150)
     # bg_removed_blurred = cv2.blur(bg_removed, (5, 5))
     # images = np.hstack((bg_removed, depth_colormap))
@@ -42,6 +43,8 @@ while True:
         if M['m00'] != 0:
             cx = int(M['m10']/M['m00'])
             cy = int(M['m01']/M['m00'])
+            print((cx, cy))
+            print(cam.get_point_pos(frames, cx, cy))
     cv2.drawContours(bg_removed, contours, -1, (0, 255, 0), 1)
     cv2.circle(bg_removed, (cx, cy), 2, (0, 0, 255), 2)
     cv2.imshow('Main', np.hstack((bg_removed, masked_image)))
@@ -50,4 +53,6 @@ while True:
     if key & 0xFF == ord('q') or key == 27:
         cv2.destroyAllWindows()
         break
+
+print(np.shape(depth_image))
 cam.stop_pipeline()
