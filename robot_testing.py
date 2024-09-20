@@ -9,7 +9,7 @@ robot.start_running()
 mode = 'h'
 # Let the user select the position
 while mode != 'q':
-    mode=input("[h]ome, [s]leep, [go] - open gripper, [gc] - close gripper, [wccw] - waist counter-clockwise, [wcw] - waist clockwise, [shu] - shoulder up,\n[shd] - shoulder down, [eu] - elbow up, [ed] - elbow down, [pos] - display position, [r,theta,z] - move to position in cylindrical coordinates [q]uit ")
+    mode=input("[h]ome, [s]leep, [go] - open gripper, [gc] - close gripper, [wccw] - waist counter-clockwise, [wcw] - waist clockwise, [shu] - shoulder up,\n[shd] - shoulder down, [eu] - elbow up, [ed] - elbow down, [pos] - display position, [r,theta,z] - move to position in cylindrical cords [q]uit ")
     if mode == "h":
         robot.home_pos()
     elif mode == "s":
